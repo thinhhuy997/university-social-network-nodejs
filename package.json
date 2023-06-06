@@ -1,0 +1,40 @@
+{
+  "name": "authentication-authorization-nodejs-jwt-mongodb",
+  "version": "1.0.0",
+  "description": "Node.js + MongoDB: JWT Authentication & Authorization",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --inspect=127.0.0.1:9229 server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "jwt",
+    "authentication",
+    "mongodb"
+  ],
+  "author": "VNTALKING",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "inspect": "0.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.3",
+    "mongoose-dateonly": "^1.0.6",
+    "multer": "^1.4.2",
+    "node-localstorage": "^2.1.6",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
+    "socket.io": "^4.1.2",
+    "store": "^2.0.12"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

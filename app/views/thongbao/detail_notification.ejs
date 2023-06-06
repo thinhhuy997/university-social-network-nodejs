@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết thông báo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<body class="notification-body">
+<!--navbar-->
+<div class="navbar">
+    <ul class="navbar-nav navbar-left">
+        <li class="nav-item">
+            <a class="nav-link" id="sidebar-btn">
+                <i class="fas fa-bars"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/sinhvien/index"><img src="/imgs/logo/brand_logo.png" class="brand-logo" alt="brand logo"></a>
+        </li>
+        <li class="nav-item navbar-brand-container" >
+            <a class="navbar-brand" href="/sinhvien/index">BNet</a>
+        </li>
+    </ul>
+    <div class="navbar-search">
+        <!--
+
+                    <button class="SearchBaiVietTheoEmail"><i class="fas fa-search"></i></button> -->
+        <!-- <div class="dropdown">
+            <input type="text" name="Search" class="navbar-search-input InputSearchBaiVietDisplayName" placeholder="Tìm bài viết theo email">
+            <div class="dropdown">
+                <div class="dropdown-menu">
+
+                </div>
+            </div>
+        </div> -->
+        <div class="dropdown">
+            <input type="text" name="Search" class="navbar-search-input InputSearchBaiVietDisplayName" placeholder="Tìm bài viết sinh viên">
+
+            <div class="dropdown-menu DanhSachSinhVien" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+    </div>
+
+    <ul class="navbar-nav navbar-right">
+
+        <li class="nav-item user-block ml-2">
+            <a class="user-container">
+                <div class="nav-avt">
+                    <img class="avataruser" src="<%= user.avatar %>" alt="User image">
+                </div>
+                <span class="displaynameuser"><%= displayName %></span>
+                <span class="p-1">
+                    </span>
+            </a>
+
+
+        </li>
+        <li class="nav-item dropdown d-flex justify-content-center align-items-center">
+            <a class="navbar-button-container" data-toggle="dropdown">
+                <div class="nav-rounded-button justify-content-center d-flex">
+                    <i class=" fas fa-bell"></i>
+                    <span class="navbar-badge">15</span>
+                </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-notice">
+                <div class="dropdown-header">
+                        <span>
+                            Thông báo
+                        </span>
+                </div>
+                <div class="dropdown-menu-content">
+                    <li class="dropdown-menu-item">
+                        <a href="#" class="dropdown-menu-link d-flex justify-content-center">
+                            <div class="d-flex justify-content-center">
+                                <div class="nav-avt">
+                                    <img  class="avataruser" src="<%= user.avatar %>" alt="User image">
+                                </div>
+                            </div>
+                            <span class="notification-content">
+                                    Hướng dẫn cắt html,css từ psd cho người mới từ a-z, chi tiết, hoản chỉnh 1 file psd. Giúp anh em newbie có 1 cách hiểu tổng quan hơn về cách chuyển 1 file psd sang mã html,css.
+                                </br>
+                                <span>
+                                        14/03/2021
+                                    </span>
+                                </span>
+                        </a>
+                    </li>
+                </div>
+                <div class="dropdown-menu-footer">
+                    Xem toàn bộ thông báo
+                </div>
+            </ul>
+        </li>
+        <li class="nav-item dropdown d-flex justify-content-center align-items-center">
+            <a class="navbar-button-container" data-toggle="dropdown">
+                <div class="nav-rounded-button justify-content-center align-items-center d-flex">
+                    <i class=" fas fa-caret-down"></i>
+                </div>
+                <div class="dropdown-menu detail-seclect-dropdown-menu dropdown-menu-right">
+                    <div class="d-flex align-items-center">
+                        <a href="#" class="lg-user-container">
+                            <div class="nav-avt">
+                                <img class="avataruser" src="<%= user.avatar %>" alt="User img">
+                            </div>
+                            <div>
+                                <h5 class="displaynameuser"><%= displayName %></h5>
+                                <span>Xem bài viêt của bạn</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="devide">
+                        <hr>
+                    </div>
+                    <div class="dropdown-menu-item">
+                        <a href="#" id="btn-chinhsuathongtin" class="dropdown-menu-link">
+                            <div class="icon-container d-flex align-items-center justify-content-center">
+                                <i class="fas fa-user-cog"></i>
+                            </div>
+                            <span>
+                                    Chỉnh sửa thông tin của bạn
+                                </span>
+                        </a>
+                    </div>
+                    <div class="dropdown-menu-item">
+                        <a href="http://localhost:8080/thongbao" class="dropdown-menu-link">
+                            <div class="icon-container d-flex align-items-center justify-content-center">
+                                <i class="text-danger fas fa-bullhorn"></i>
+                            </div>
+                            <span>
+                                    Xem thông báo của trường
+                                </span>
+                        </a>
+                    </div>
+                    <div class="dropdown-menu-item">
+                        <a href="/sinhvien/index" class="dropdown-menu-link">
+                            <div class="icon-container d-flex align-items-center justify-content-center">
+                                <i class="text-primary fas fa-globe-americas"></i>
+                            </div>
+                            <span>
+                                    Mạng xã hội
+                                </span>
+                        </a>
+                    </div>
+                    <div class="logout my-4">
+                        <a href="/" class="btn btn-logout text-white d-flex justify-content-center align-items-center">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="sidebar d-flex" role="complementary">
+    <div class="body-sidebar">
+        <ul class="sidebar-top">
+            <li class="sidebar-item user-infor">
+                <a href="#" class="lg-user-container">
+                    <div class="nav-avt">
+                        <img class="avataruser" src="<%= user.avatar %>" alt="User img">
+                    </div>
+                    <div>
+                        <h5 class="displaynameuser"><%= displayName %></h5>
+                    </div>
+                </a>
+            </li>
+            <li class="sidebar-item btn-function ">
+                <a href="http://localhost:8080/sinhvien/index"><i class="clear-child-color mr-1 fas fa-home"></i><span>Trang chủ</span></a>
+            </li>
+            <li class="sidebar-item btn-function ">
+                <a href="http://localhost:8080/thongbao"><i class="mr-1 text-danger fas fa-bullhorn"></i><span>Trang thông báo</span></a>
+            </li>
+            <hr>
+
+            <p class="text-dark">Phân loại thông báo</p>
+            <hr>
+            <li class="sidebar-item btn-function">
+                <a href="#"><img src="/icon/phongban.svg" class="icon mr-2"></i><span>Phòng ban</span></a>
+            </li>
+            <li class="sidebar-item btn-function">
+                <a href="#"><img src="/icon/gallery.svg" class="icon mr-2"><span>Chủ đề</span></a>
+            </li>
+            <li class="sidebar-item btn-function">
+                <a><img src="/icon/list.png" class="icon mr-2"><span>Toàn bộ thông báo</span></a>
+            </li>
+            <hr>
+            <p class="text-dark">Danh sách khoa</p>
+            <hr>
+            <ul class="faculty-list">
+                <li>
+                    <a href="#" class="d-flex align-items-center faculty-container">
+                        <div class="faculty-avt">
+                            <img src="/imgs/avt/avt02.jfif" alt="User image cap">
+                        </div>
+                        <span class="ml-2">
+                                       Khoa CNTT
+                                   </span>
+                    </a>
+                </li>
+
+            </ul>
+        </ul>
+    </div>
+    <div class="background-space">
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <!--Khu vực bên trái của trang web-->
+        <div class="col-3 left-container " role="complementary">
+            <div class="body-left">
+                <ul class="sidebar-top">
+                    <li class="sidebar-item user-infor">
+                        <div class="card user-card lg-rounded" style="width:100%;">
+                            <img  class="card-img-top avataruser" src="<%= user.avatar %>" alt="User image cap">
+                            <div class="card-body">
+                                <p class="user-name text-center text-primary displaynameuser" ><%= displayName %></p>
+                            </div>
+                            <button id="BaiVietCaNhan"   class="btn btn-view-infor btn-primary text-white my-2">Xem bài viết của bạn</button>
+
+                        </div>
+                    </li>
+                    <li class="sidebar-item btn-function active">
+                        <a href="#"><i class="clear-child-color mr-1 fas fa-home"></i><span>Trang chủ</span></a>
+                    </li>
+                    <li class="sidebar-item btn-function ">
+                        <a href="http://localhost:8080/thongbao"><i class="mr-1 text-danger fas fa-bullhorn"></i><span>Trang thông báo</span></a>
+                    </li>
+                    <hr>
+                    <p class="text-dark">Phân loại thông báo</p>
+                    <hr>
+                    <li class="sidebar-item btn-function">
+                        <a href="#"><img src="/icon/phongban.svg" class="icon mr-2"></i><span>Phòng ban</span></a>
+                    </li>
+                    <li class="sidebar-item btn-function">
+                        <a href="#"><img src="/icon/gallery.svg" class="icon mr-2"><span>Chủ đề</span></a>
+                    </li>
+                    <li class="sidebar-item btn-function btn_all_post">
+                        <a href="#"><img src="/icon/list.png" class="icon mr-2"><span>Toàn bộ thông báo</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--Khu vực trung tâm của trang web-->
+        <div class="notification-container">
+            <div aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white">
+                    <li class="breadcrumb-item"><a href="http://localhost:8080/sinhvien/index"><i class="mr-2 fas fa-home"></i>Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="http://localhost:8080/thongbao">Thông báo</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><%= id_thongbao%></li>
+                </ol>
+            </div>
+            <div class="notification-content-container w-100 p-4 bg-white rounded">
+                <div class="notification-content-header">
+                    <h3 class="text-center font-weight-bold" id="title_thongbao">Tiêu đề thông báo </h3>
+                </div>
+                <div class="notification-content-infor d-flex flex-wrap justify-content-between align-items-center">
+                    <!-- <a href="" class="content-topic mt-2 px-3 outline-danger">
+                        <span><i class="wild-water-melon-color fas fa-image"></i></span>
+                        <span>Đăng ký môn học</span>
+                    </a> -->
+                    <div class="d-flex align-items-center mt-2 px-3 outline-primary">
+                        <a href="#" class="d-flex align-items-center notification-content-faculty">
+                            <div class="faculty-avt">
+                                <img src="/imgs/avt/avt02.jfif" alt="User image cap">
+                            </div>
+                            <span class="ml-2" id="chuyenmuc_thongbao">
+                                       Khoa CNTT
+                                   </span>
+                        </a>
+                        <div>
+                            |
+                        </div>
+                        <div class="time ml-2">
+                            12/10/2020
+                        </div>
+                    </div>
+                </div>
+                <div class="notification-content-detail mt-5" id="content_thongbao">
+                    <span style="font-size: 25px;">
+                        nội dung thông báo tại đây
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="footer bg-info"></div>
+
+
+<!-- ------------------modal box--------------------- -->
+<!-- modal dành cho đăng bài -->
+<div class="modal fade" id="post-Modal">
+    <div class="modal-dialog modal-lg modal-top">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title font-weight-bold">Tạo bài viết</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="d-flex align-items-center">
+                    <div href="" class="lg-user-container">
+                        <div class="nav-avt">
+                            <img src="/imgs/avt/avt01.jfif" alt="User img">
+                        </div>
+                        <div class="px-2">
+                            <h6>Nguyễn Văn Huy</h6>
+                            <span class="text-info">Sinh viên</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="mt-3">
+                    <div class="form-group">
+                        <div class="md-form amber-textarea active-amber-textarea-2">
+                            <textarea id="form16" class="md-textarea form-control" rows="6"></textarea>
+                            <label for="form16">Bạn đang nghĩ gì?</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="attachment-post-container d-flex align-items-center">
+                            <div class="ml-2 post-btn btn">
+                                <i class="text-primary far fa-images"></i>
+                            </div>
+                            <div class="ml-2 post-btn btn" id="add-link-yt-btn" onclick="addLinkYt()">
+                                <i class="text-danger fab fa-youtube"></i>
+                            </div>
+                            <input type="text" name="youtube_link">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" disabled id="btn-post-article" class="btn btn-primary btn-block my-1 glyphicon-text-size">Đăng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Jquery-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/javascripts/main.js"></script>
+</body>
+</html>

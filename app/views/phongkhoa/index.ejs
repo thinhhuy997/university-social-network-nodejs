@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js" integrity="sha512-2RDFHqfLZW8IhPRvQYmK9bTLfj/hddxGXQAred2wNZGkrKQkLGj8RCkXfRJPHlDerdHHIzTFaahq4s/P4V6Qig==" crossorigin="anonymous"></script> //new
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body class="body-index">
+    <!--navbar-->
+    <div class="navbar">
+        <ul class="navbar-nav navbar-left">
+            <li class="nav-item">
+                <a class="nav-link" id="sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/"><img src="/imgs/logo/brand_logo.png" class="brand-logo" alt="brand logo"></a>
+            </li>
+            <li class="nav-item navbar-brand-container" >
+                <a class="navbar-brand" href="/">BNet</a>
+            </li>
+        </ul>
+        <form class="navbar-search">
+            <input type="text" name="Search" class="navbar-search-input" placeholder="Search ...">
+            <i class="fas fa-search"></i>
+        </form>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item d-flex justify-content-center align-items-center">
+                <div class=" dropdown navbar-button-container">
+                    <div id="dropdown-choose-Menu" data-toggle="dropdown" class="nav-rounded-button justify-content-center align-items-center d-flex">
+                        <i class="text-info fas fa-plus"></i>
+                    </div>
+                    <div class="dropdown-menu py-2">
+                        <div class="dropdown-header">Tính năng</div>
+                        <div class="dropdown-item btn btn-light d-flex" data-toggle="modal" data-target="#post-Modal"><div><i class="mr-1 fas fa-edit"></i></div>Đăng bài</div>
+                        <a href="#" class="dropdown-item btn btn-light d-flex"><div><i class="mr-2 fas fa-feather"></i></div>Đăng thông báo</a>
+                        <hr>
+                        <button class="dropdown-item" type="button">Chưa nghĩ ra</button>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item user-block ml-2">
+                <a class="user-container">
+                    <div class="nav-avt">
+                        <img src="/imgs/avt/avt01.jfif" alt="User image">
+                    </div>
+                    <span><%= displayName %></span>
+                    <span class="p-1">
+                    </span>
+                </a>
+
+
+            </li>
+            <li class="nav-item dropdown d-flex justify-content-center align-items-center">
+                <a class="navbar-button-container" data-toggle="dropdown">
+                    <div class="nav-rounded-button justify-content-center d-flex">
+                        <i class=" fas fa-bell"></i>
+                        <span class="navbar-badge">15</span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-notice">
+                    <div class="dropdown-header">
+                        <span>
+                            Thông báo
+                        </span>
+                    </div>
+                    <div class="dropdown-menu-content">
+                        <li class="dropdown-menu-item">
+                            <a href="#" class="dropdown-menu-link d-flex justify-content-center">
+                                <div class="d-flex justify-content-center">
+                                    <div class="nav-avt">
+                                        <img src="/imgs/avt/avt01.jfif" alt="User image">
+                                    </div>
+                                </div>
+                                <span class="notification-content">
+                                    Hướng dẫn cắt html,css từ psd cho người mới từ a-z, chi tiết, hoản chỉnh 1 file psd. Giúp anh em newbie có 1 cách hiểu tổng quan hơn về cách chuyển 1 file psd sang mã html,css.
+                                    </br>
+                                    <span>
+                                        14/03/2021
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                    </div>
+                    <div class="dropdown-menu-footer">
+                        Xem toàn bộ thông báo
+                    </div>
+                </ul>
+            </li>
+            <li class="nav-item dropdown d-flex justify-content-center align-items-center">
+                <a class="navbar-button-container" data-toggle="dropdown">
+                    <div class="nav-rounded-button justify-content-center align-items-center d-flex">
+                        <i class=" fas fa-caret-down"></i>
+                    </div>
+                    <div class="dropdown-menu detail-seclect-dropdown-menu dropdown-menu-right">
+                        <div class="d-flex align-items-center">
+                            <a href="#" class="lg-user-container">
+                                <div class="nav-avt">
+                                    <img src="/imgs/avt/avt01.jfif" alt="User img">
+                                </div>
+                                <div>
+                                    <h5><%= displayName %></h5>
+                                    <span>Xem trang cá nhân của bạn</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="devide">
+                            <hr>
+                        </div>
+                        <div class="dropdown-menu-item">
+                            <a href="#" id="btn-doimatkhau" class="dropdown-menu-link">
+                                <div class="icon-container d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-user-cog"></i>
+                                </div>
+                                <span>
+                                    Đổi mật khẩu
+                                </span>
+                            </a>
+                        </div>
+                        <div class="dropdown-menu-item">
+                            <a href="#" class="dropdown-menu-link">
+                                <div class="icon-container d-flex align-items-center justify-content-center">
+                                    <i class="text-danger fas fa-bullhorn"></i>
+                                </div>
+                                <span>
+                                    Xem thông báo của trường
+                                </span>
+                            </a>
+                        </div>
+                        <div class="dropdown-menu-item">
+                            <a href="#" class="dropdown-menu-link">
+                                <div class="icon-container d-flex align-items-center justify-content-center">
+                                    <i class="text-primary fas fa-globe-americas"></i>
+                                </div>
+                                <span>
+                                    Mạng xã hội
+                                </span>
+                            </a>
+                        </div>
+                        <div class="logout my-4">
+                            <a class="btn btn-logout text-white d-flex justify-content-center align-items-center">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="sidebar d-flex" role="complementary">
+        <div class="body-sidebar">
+            <ul class="sidebar-top">
+                <li class="sidebar-item user-infor">
+                    <a href="#" class="lg-user-container">
+                        <div class="nav-avt">
+                            <img src="/imgs/avt/avt01.jfif" alt="User img">
+                        </div>
+                        <div>
+                            <h5><%= displayName %></h5>
+                        </div>
+                    </a>
+                </li>
+                <li class="sidebar-item btn-function ">
+                    <a href="#"><i class="clear-child-color mr-1 fas fa-home"></i><span>Trang chủ</span></a>
+                </li>
+                <li class="sidebar-item btn-function ">
+                    <a href="#"><i class="mr-1 text-danger fas fa-bullhorn"></i><span>Trang thông báo</span></a>
+                </li>
+                <hr>
+
+                <p class="text-dark">Phân loại thông báo</p>
+                <hr>
+                <li class="sidebar-item btn-function">
+                    <a href="#"><img src="/icon/phongban.svg" class="icon mr-2"></i><span>Phòng ban</span></a>
+                </li>
+                <li class="sidebar-item btn-function">
+                    <a href="#"><img src="/icon/gallery.svg" class="icon mr-2"><span>Chủ đề</span></a>
+                </li>
+                <li class="sidebar-item btn-function">
+                    <a><img src="/icon/list.png" class="icon mr-2"><span>Toàn bộ thông báo</span></a>
+                </li>
+                <hr>
+                <p class="text-dark">Danh sách khoa</p>
+                <hr>
+                <ul class="faculty-list">
+                    <li>
+                        <a href="#" class="d-flex align-items-center faculty-container">
+                            <div class="faculty-avt">
+                                <img src="/imgs/avt/avt02.jfif" alt="User image cap">
+                            </div>
+                            <span class="ml-2">
+                                       Khoa CNTT
+                                   </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </ul>
+        </div>
+        <div class="background-space">
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!--Khu vực trung tâm của trang web-->
+            <div class="col-10 d-flex justify-content-center">
+                <div class="w-100">
+                    <div class="center-post-article-container">
+                      <h1>Thông Báo</h1>
+                    </div>
+
+                    <!-- bat dau khu vuc bai viet -->
+                <div class="AllThongBao">
+                    <% thongbao.reverse().forEach( e => { %>
+                        <div class="user-post-container DivThongBao" thongbao-id="<%= e._id %>" >
+                            <div class="card">
+                                <div class="card-header d-flex">
+                                    <div href="" class="small-user-container">
+                                        <div class="nav-avt">
+                                            <img src="/imgs/avt/avt01.jfif" alt="User img">
+                                        </div>
+                                        <div class="px-2">
+                                            <h6><%= e.id_user.displayName %></h6>
+                                            <span class="text-muted ChuyenMuc"  thongbao-id="<%= e._id %>" >  <%= e.chuyenmuc.name %> </span>
+                                        </div>
+                                    </div>
+                                    <p class="card-text user-post-time"><small class="text-muted"><%= e.created_at.toJSON().slice(0, 10) %></small></p>
+                                    <div class="dropup position-absolute top-0 right-0">
+                                        <div class="btn  btn-more-function d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </div>
+                                        <div class="dropdown-menu dropdown-fix py-2">
+                                            <div class="dropdown-item Btn-ChinhSuaThongBao" data-toggle="modal" thongbao-id="<%= e._id %>" >Chỉnh sửa</div>
+                                            <div class="dropdown-item Btn-XoaThongBao" data-toggle="modal" thongbao-id="<%= e._id %>" >Xóa</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title TieuDe" thongbao-id="<%= e._id %>"><%= e.tieude_thongbao %></h5>
+                                    <p class="card-text NoiDung"  thongbao-id="<%= e._id %>" ><%= e.noidung_thongbao %></p>
+                                </div>
+                          
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>   
+                    
+
+                    
+
+
+
+
+
+                    <!-- load them bai viet -->
+                    <div id="load_data"></div>
+                    <div id="load_data_message" style="margin-left: 280px;"></div> 
+                    <!-- load them bai viet -->
+                    <!-- end khu vuc bai viet -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer bg-info"></div>
+
+
+    <!-- ------------------modal box--------------------- -->
+    <!-- modal dành cho đăng bài -->
+    <div class="modal fade" id="post-Modal">
+        <div class="modal-dialog modal-lg modal-top">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header w-100 d-flex justify-content-center align-items-center position-relative">
+                    <h5 class="modal-title" id="exampleModalLabel">Tạo thông báo</h5>
+                    <button type="button" class="close position-absolute top-1 right-2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="d-flex align-items-center">
+                        <div href="" class="lg-user-container">
+                            <div class="nav-avt">
+                                <img src="/imgs/avt/avt01.jfif" alt="User img">
+                            </div>
+                            <div class="px-2">
+                                <h6><%= displayName %></h6>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <form class="mt-3 post-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="md-form amber-textarea active-amber-textarea-2">
+                                <textarea id="form16" class="md-textarea form-control TieuDeDang" rows="1"></textarea>
+                                <label for="form16">Tiêu đề thông báo?</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="md-form amber-textarea active-amber-textarea-2">
+                                <textarea id="form16" class="md-textarea form-control NoiDungDang" rows="6"></textarea>
+                                <label for="form16">Nội dung thông báo?</label>
+                            </div>
+                        </div>
+                       
+                        <label for="chuyenmuc">Chọn chuyên mục:</label>
+
+                        <select name="chuyenmuc" id="chuyenmuc">
+                        
+                            <% user.chuyenmuc.forEach( (e,index) => { %>
+                                <option value="<%= e.name %>" ><%= e.name %></option>
+                         
+                            <% }) %>
+                    
+                        </select>
+                       
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button"  id="btn-post-article" class="BtnDang btn btn-primary btn-block my-1 glyphicon-text-size">Đăng</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- modal dành cho chỉnh sửa thông báo -->
+    <div class="modal fade" id="change-post-Modal">
+        <div class="modal-dialog modal-lg modal-top">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header w-100 d-flex justify-content-center align-items-center position-relative">
+                    <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông báo</h5>
+                    <button type="button" class="close position-absolute top-1 right-2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="d-flex align-items-center">
+                        <div href="" class="lg-user-container">
+                            <div class="nav-avt">
+                                <img src="/imgs/avt/avt01.jfif" alt="User img">
+                            </div>
+                            <div class="px-2">
+                                <h6><%= displayName %></h6>
+                                <span class="text-muted">Sinh viên</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="mt-3 post-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="md-form amber-textarea active-amber-textarea-2">
+                                <textarea id="form16" class="md-textarea form-control TieuDeChinhSua" rows="1"></textarea>
+                                <label for="form16">Tiêu đề thông báo?</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="md-form amber-textarea active-amber-textarea-2">
+                                <textarea id="form16" class="md-textarea form-control NoiDungChinhSua" rows="6"></textarea>
+                                <label for="form16">Nội dung thông báo?</label>
+                            </div>
+                        </div>
+
+                        <!-- chuyen muc  -->
+
+                        <label for="chuyenmuc">Chọn chuyên mục:</label>
+
+                        <select name="chuyenmuc" id="chuyenmucchinhsua">
+                        
+                            <% user.chuyenmuc.forEach( (e,index) => { %>
+                                <option value="<%= e.name %>" ><%= e.name %></option>
+                         
+                            <% }) %>
+                    
+                        </select>
+                       
+                       
+                       
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="btn-post-article" class="btn btn-primary btn-block my-1 glyphicon-text-size Btn-LuuChinhSua">Lưu</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+    <!-- modal dành cho xóa-->
+    <div class="modal fade" id="delete">
+        <div class="modal-dialog modal-lg modal-top">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header w-100 d-flex justify-content-center align-items-center position-relative">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa</h5>
+                    <button type="button" class="close position-absolute top-1 right-2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p>Bạn có chắc chắn muốn xóa thông báo này</p>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer pt-0 border-none">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-danger my-1 glyphicon-text-size Btn-XacNhanXoaThongBao">Xóa</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   <!-- modal doi mat khau tai khoan -->
+            <div class="modal fade" id="ModelDoiMatKhau" tabindex="-1" role="dialog" aria-labelledby="ModelDoiMatKhauLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="ModelDoiMatKhauLabel">Thay Đổi Mật Khẩu</h5>
+                    <button type="button" class="closeChangePassword" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="noborder">
+                            <tr class="noborder">
+                                <td class="noborder"> <label  for="#CurrentPassword">Mật Khẩu Hiện Tại</label> </td>
+                                <td class="noborder"><input type="password" id="CurrentPassword" name="CurrentPassWord" placeholder="vui lòng nhập mật khẩu hiện tại" /></td>
+                            </tr>
+                            <tr class="noborder">
+                                <td class="noborder"> <label  for="NewPassword">Mật Khẩu Mới</label> </td>
+                                <td class="noborder"><input type="password" id="NewPassword" name="NewPassWord" placeholder="vui lòng nhập mật khẩu mới" /></td>
+                            </tr>
+                            <tr class="noborder">
+                                <td class="noborder"> <label  for="ConfirmPassword">Xác Nhận Mật Khẩu</label> </td>
+                                <td class="noborder"><input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="vui lòng nhập lại mật khẩu" /></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeChangePassword" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary SaveChange ">Save changes</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        
+    <!-- end modal doi mat khau tai khoan  -->
+
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/javascripts/js/phongkhoa/main.js"></script>
+</body>
+
+
+</html>
